@@ -9,7 +9,7 @@ const Manager = () => {
 
   useEffect(() => {
     // Fetch saved numbers from the backend API
-    axios.get('http://localhost:5000/api/numbers')
+    axios.get('https://backend-airforshare.vercel.app/api/numbers')
       .then(res => setPasswordArray(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -26,7 +26,7 @@ const Manager = () => {
   const savePassword = () => {
     if (form.site.length > 3) {
       // Save the number to the backend
-      axios.post('http://localhost:5000/api/numbers', { site: form.site })
+      axios.post('https://backend-airforshare.vercel.app/api/numbers', { site: form.site })
         .then(res => setPasswordArray([...passwordArray, res.data]))
         .catch(err => console.error(err));
 
@@ -39,7 +39,7 @@ const Manager = () => {
   const deletePassword = (id) => {
     let confirmDelete = confirm('Do you really want to delete the number?');
     if (confirmDelete) {
-      axios.delete(`http://localhost:5000/api/numbers/${id}`)
+      axios.delete(`https://backend-airforshare.vercel.app/api/numbers/${id}`)
         .then(() => setPasswordArray(passwordArray.filter(item => item._id !== id)))
         .catch(err => console.error(err));
     }
